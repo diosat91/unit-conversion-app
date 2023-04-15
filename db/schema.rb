@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_04_15_124057) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conversions", force: :cascade do |t|
-    t.integer "dimension_id", null: false
-    t.integer "source_unit_id", null: false
-    t.integer "target_unit_id", null: false
+    t.bigint "dimension_id", null: false
+    t.bigint "source_unit_id", null: false
+    t.bigint "target_unit_id", null: false
     t.decimal "factor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,14 +35,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_124057) do
   create_table "units", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
-    t.integer "dimension_id", null: false
+    t.bigint "dimension_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dimension_id"], name: "index_units_on_dimension_id"
   end
 
   add_foreign_key "conversions", "dimensions"
-  add_foreign_key "conversions", "source_units"
-  add_foreign_key "conversions", "target_units"
+  add_foreign_key "conversions", "units", column: "source_unit_id"
+  add_foreign_key "conversions", "units", column: "target_unit_id"
   add_foreign_key "units", "dimensions"
 end
