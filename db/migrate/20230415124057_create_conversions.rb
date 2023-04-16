@@ -5,6 +5,7 @@ class CreateConversions < ActiveRecord::Migration[7.0]
       t.references :source_unit, null: false, foreign_key: { to_table: :units }
       t.references :target_unit, null: false, foreign_key: { to_table: :units }
       t.decimal :factor
+      t.decimal :value
       t.timestamps
     end
   end

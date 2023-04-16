@@ -2,10 +2,10 @@
 #
 # Table name: units
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  name         :string
 #  abbreviation :string
-#  dimension_id :integer          not null
+#  dimension_id :bigint           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

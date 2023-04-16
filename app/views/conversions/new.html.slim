@@ -1,0 +1,14 @@
+= form_for @conversion, url: conversions_path, method: :post do |f|
+  div
+    = f.label :dimension_id, id: 'dimension-select'
+    = f.collection_select :dimension_id, @dimensions, :id, :name, {}
+  div
+    = f.label :source_unit_id
+    = f.collection_select :source_unit_id, @units, :id, :name
+  div
+    = f.label :target_unit_id
+    = f.collection_select :target_unit_id, @units, :id, :name
+  div
+    = f.label :value
+    = f.number_field :value, step: "any"
+  = f.submit "Convert"
