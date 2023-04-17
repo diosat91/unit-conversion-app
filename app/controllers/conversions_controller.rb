@@ -21,6 +21,14 @@ class ConversionsController < ApplicationController
     redirect_to conversions_path(result: @result)
   end
 
+  def units
+    @target = params[:target]
+    @units = Dimension.find_by(name: params[:dimension]).units.map(&:name)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
   
   def conversion_params

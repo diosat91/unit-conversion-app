@@ -4,4 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'conversions#new'
   resources :conversions, only: [:new, :create, :index]
+  resources :conversions do
+    collection do
+      get :units
+    end
+  end
 end

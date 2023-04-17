@@ -1,0 +1,21 @@
+<%= form_with(model: @conversion, local: true) do |form| %>
+  <div data-controller="dimension">
+    <div>
+      <%= form.label :dimension %>
+      <%= form.select :dimension, @dimensions.map(&:name), { class: 'form-select'}, { data: { action: "change->dimension#change" } } %>
+    </div>
+    <div>
+      <%= form.label :source_unit %>
+      <%= form.select :source_unit, [], {}, { class: 'unit-select', data: { dimension_target: "unitSelect" } } %>
+    </div>
+    <div>
+      <%= form.label :target_unit %>
+      <%= form.select :target_unit, [], {}, { class: 'unit-select', data: { dimension_target: "unitSelect" } } %>
+    </div>
+  </div>
+  <div>
+    <%= form.label :value %>
+    <%= form.number_field :value %>
+  </div>
+  <%= form.submit "Convert" %>
+<% end %>
